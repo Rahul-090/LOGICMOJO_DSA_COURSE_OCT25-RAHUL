@@ -23,8 +23,8 @@ public class RotateMatrix {
             }
         }
         for(int i = 0; i < n; i++){
-//            reverseArr(arr[i], 0, n-1);
-            Array.rev
+            reverseArr(arr[i], 0, n-1);
+//            Array.rev
         }
         return arr;
     }

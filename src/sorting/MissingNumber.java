@@ -1,5 +1,4 @@
-package arrays;
-import java.util.*;
+package sorting;
 
 public class MissingNumber {
     public static void main(String[] args) {
