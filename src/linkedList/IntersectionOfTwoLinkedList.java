@@ -16,82 +16,50 @@ public class IntersectionOfTwoLinkedList {
 
         head.printLL(head);
         head2.printLL(head2);
-        head.printLL(intersectionOfLL2(head, head2));
+        head.printLL(intersectionOfLL(head, head2));
 
 
     }
 
-    //using floyd algo
-    public static Node intersectionOfLL2(Node head1, Node head2){
-        Node curr1 = head1;
 
-        while(curr1.next != null){
+
+
+    public static Node intersectionOfLL(Node headA, Node headB){
+
+        int len1 = lengthOfLL(headA);
+        int len2 = lengthOfLL(headB);
+
+        Node curr1 = headA;
+        Node curr2 = headB;
+
+        while(len1 > len2){
+            len1--;
             curr1 = curr1.next;
         }
 
-        curr1.next = head2;
-
-        Node slow = head1;
-        Node fast = head1;
-
-        while(fast != null && fast.next != null){
-            slow = slow.next;
-            fast = fast.next.next;
-
-            if(slow == fast){
-                slow = head1;
-
-                while(slow != fast){
-                    slow = slow.next;
-                    fast = fast.next;
-                }
-                return slow;
-            }
-        }
-        return slow;
-    }
-
-
-
-    public static Node intersectionOfLL(Node head1, Node head2){
-
-        //length of 1s1 LL
-        int len1 = 0;
-
-        Node curr1 = head1;
-        while(curr1 != null){
-            len1++;
-            curr1 = curr1.next;
-        }
-
-        //length of2nd ll
-        int len2 = 0;
-        Node curr2 = head2;
-        while(curr2 != null){
-            len2++;
+        while(len2 > len1){
+            len2--;
             curr2 = curr2.next;
         }
 
-        int diff = Math.abs(len1-len2);
-        if(len1 > len2){
-            while(diff > 0){
-               head1 = head1.next;
-               diff--;
-            }
-
-        }else{
-            while(diff > 0){
-                head2 = head2.next;
-                diff--;
-            }
+        while(curr1 != curr2){
+            curr1 = curr1.next;
+            curr2 = curr2.next;
         }
 
-        while(head1 != head2){
-            head1 = head1.next;
-            head2 = head2.next;
+        return curr1;
+
+
+
+    }
+
+    static int lengthOfLL(Node head){
+        Node curr = head;
+        int len = 0;
+        while(curr != null){
+            len++;
+            curr = curr.next;
         }
-
-        return head1;
-
+        return len;
     }
 }
