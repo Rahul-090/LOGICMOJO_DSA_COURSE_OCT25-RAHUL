@@ -1,0 +1,74 @@
+package linkedList;
+
+Class LRUCache{
+    
+    Class Node{
+    int key;
+    int value;
+    Node next;
+    Node prev;
+    
+    Node(int key, int value){
+        this.key = key;
+        this.value = value;
+    }
+}
+
+    Node head;
+    Node tail;
+    
+    int capacity;
+    HashMap<Integer, Node> mpp;
+    
+    
+    public LRUCache(int capacity){
+        this.capacity = capacity;
+        mpp = new HashMap<>();
+        
+        //to avoid null checks;
+        head = new Node(-1, -1);
+        tail = new Node(-1, -1);
+        head.next = tail;
+        tail.prev = head;
+    }
+    
+    // add node
+    private void addNode(Node newNode){
+        Node nextNode = head.next;
+        
+        newNode.next = nextNode;
+        head.next = newNode;
+        
+        newNode.prev = head;
+        nextNode.prev = newNode;
+    }
+    
+    //remove a node from DLL
+    private void removeNode(Node node){
+        Node prevNode = node.prev;
+        Node nextNode = node.next;
+        
+        prevNode.next = nextNode;
+        nextNode.prev = prevNode;
+        
+    }
+    
+    //move node to MRU(to the front)
+    private void moveToFront(Node node){
+        removeNode(node);
+        addNode(node);
+    }
+    
+    //remove the lru i.e last node
+    private node removeLru(){
+        Node lru = tail.prev;
+        removeNode(lru);
+        return lru;
+    }
+    
+    //get operation
+    
+    
+    
+    
+}
