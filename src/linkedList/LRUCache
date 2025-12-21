@@ -33,14 +33,14 @@ Class LRUCache{
     }
     
     // add node
-    private void addNode(Node newNode){
+    private void addNode(Node newTreeNode){
         Node nextNode = head.next;
         
-        newNode.next = nextNode;
-        head.next = newNode;
+        newTreeNode.next = nextNode;
+        head.next = newTreeNode;
         
-        newNode.prev = head;
-        nextNode.prev = newNode;
+        newTreeNode.prev = head;
+        nextNode.prev = newTreeNode;
     }
     
     //remove a node from DLL
